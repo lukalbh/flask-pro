@@ -45,6 +45,14 @@ def logout():
     session.pop("username", None)  # Supprime l'utilisateur de la session
     return redirect(url_for("login"))
 
+@app.route('/graphique')
+def graph():
+    if "username" in session :
+        print(session["username"])
+        return render_template("graphique.html")
+    else:
+        return redirect(url_for("login"))
+
 if __name__ == '__main__':
     app.run(debug=True)
 
