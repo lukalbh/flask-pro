@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/dashboard.css') }}">
+    </head>
+    <body>
+        <div class="div-img">
+            <img src="/static/img/banner.jpeg" class="img-datacup"/>
+        </div>
+        <nav class="navi">
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('dash') }}" class="">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('login') }}">Graphique</a>
+                    </li>
+                    <li>
+                        <a href="">Localisation</a>
+                    </li>
+                    <li>
+                        <a href="">Config</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('login') }}">Se Deconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </body>
+</html>

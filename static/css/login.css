@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f18928;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.form {
+    background-color: white;
+    display: flex;
+    flex-direction: column; /* Les éléments du formulaire seront empilés verticalement */
+    gap: 10px; /* Espacement entre les éléments */
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    border: 2px solid grey; /* Bordure grise */
+    border-radius: 8px; /* Coins arrondis */
+    width: 300px;
+    box-shadow: 10px 5px 5px grey;
+}
+
+.divh {
+    display: flex;
+    justify-content: center;
+}
+
+.log {
+    border: 2px solid;
+    border-radius: 30px;
+    width: 350px;
+    margin-top: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 1px;
+}
+
+.divform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.userlab {
+    font-size: small;
+    margin-right: 85px;
+    margin-top: 10px;
+}
+
+.passlab {
+    font-size: small;
+    margin-right: 95px;
+    margin-top: 10px;
+}
+
+
+.btn-id {
+    background-color: #f18928;
+    border-radius: 8px;
+    font-size: 22px;
+}
+
+.inpu {
+    max-width: 500px;        /* Définit une largeur maximale */
+    height: 25px; 
+    padding: 7px;
+    background-color: rgb(190, 184, 184);
+    border-radius: 7px;
+}
+
+.inpp {
+    max-width: 500px;        /* Définit une largeur maximale */
+    height: 25px; 
+    padding: 7px;
+    background-color: rgb(190, 184, 184);
+    border-radius: 7px;
+}
