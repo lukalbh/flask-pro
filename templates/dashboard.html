@@ -8,29 +8,6 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='./css/dashboard.css') }}">
     </head>
     <body>
-        <div class="div-img">
-            <img src="/static/img/banner.jpeg" class="img-datacup"/>
-        </div>
-        <nav class="navi">
-            <div class="nav-bar">
-                <ul>
-                    <li>
-                        <a href="{{ url_for('dash') }}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('graph') }}">Graphique</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('localisation') }}">Localisation</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('config') }}">Config</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('logout') }}">Se Deconnecter</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        {% include 'navbar.html' %}
     </body>
 </html>
