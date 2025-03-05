@@ -53,6 +53,23 @@ def graph():
     else:
         return redirect(url_for("login"))
 
+@app.route('/localisation')
+def localisation():
+    if "username" in session :
+        print(session["username"])
+        return render_template("localisation.html")
+    else:
+        return redirect(url_for("login"))
+
+@app.route('/config')
+def config():
+    if "username" in session :
+        print(session["username"])
+        return render_template("config.html")
+    else:
+        return redirect(url_for("login"))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
