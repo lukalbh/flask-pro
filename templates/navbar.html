@@ -5,31 +5,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard</title>
         
-        <link rel="stylesheet" href="{{ url_for('static', filename='./css/dashboard.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/nav-bar.css') }}">
     </head>
     <body>
-        <div class="div-img">
-            <img src="/static/img/banner.jpeg" class="img-datacup"/>
-        </div>
-        <nav class="navi">
-            <div class="nav-bar">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <img src="/static/img/banner.jpeg" alt="Logo" class="navbar-logo">
+            </div>
+            <div class="navbar-menu">
                 <ul>
-                    <li>
-                        <a href="{{ url_for('dash') }}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('graph') }}">Graphique</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('localisation') }}">Localisation</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('config') }}">Config</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('logout') }}">Se Deconnecter</a>
-                    </li>
+                    <li><a href="{{ url_for('dash') }}" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="{{ url_for('graph') }}" class="nav-link"><i class="fas fa-chart-bar"></i> Graphique</a></li>
+                    <li><a href="{{ url_for('localisation') }}" class="nav-link"><i class="fas fa-map-marker-alt"></i> Localisation</a></li>
+                    <li><a href="{{ url_for('config') }}" class="nav-link"><i class="fas fa-cog"></i> Config</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="nav-link logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
                 </ul>
+            </div>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </body>
