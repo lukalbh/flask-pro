@@ -24,8 +24,26 @@ def login():
             session["username"] = username
             return redirect(url_for("dash"))
         else:
-            return render_template("login.html", message="identifiant incorrect")
-    return render_template("login.html")
+            return render_template("login/login.html", message="identifiant incorrect")
+    return render_template("login/login.html")
+
+@app.route('/loginTech', methods=["GET", "POST"])
+def loginTech():
+    if request.method == "POST":
+        #enregistrez les données de session
+        username = request.form["username"]
+        password = request.form["password"]
+
+        mycursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+        user = mycursor.fetchone()
+        if user:      
+            session["username"] = username
+            return redirect(url_for("configTech"))
+        else:
+            return render_template("login/loginTech.html", message="identifiant incorrect")
+    return render_template("login/loginTech.html")
+
+
 
 #rediriger vers /login/
 @app.route('/')
@@ -62,14 +80,14 @@ def localisation():
     else:
         return redirect(url_for("login"))
 
-@app.route('/config')
-def config():
-    if "username" in session :
+
+@app.route('/configTech', methods=["GET", "POST"])
+def configTech():
+    if "username" in session:
         print(session["username"])
-        return render_template("config.html")
+        return render_template("login/config.html")
     else:
         return redirect(url_for("login"))
-
 
 if __name__ == '__main__':
     app.run(debug=True)
