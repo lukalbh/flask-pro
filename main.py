@@ -40,6 +40,7 @@ def dash():
     else:
         print("no session")
         return redirect(url_for("login"))
+        
 @app.route('/logout')
 def logout():
     session.pop("username", None)  # Supprime l'utilisateur de la session
