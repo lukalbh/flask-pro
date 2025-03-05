@@ -38,6 +38,7 @@ def loginTech():
         user = mycursor.fetchone()
         if user:      
             session["username"] = username
+            session.pop("username", None)
             return redirect(url_for("configTech"))
         else:
             return render_template("login/loginTech.html", message="identifiant incorrect")

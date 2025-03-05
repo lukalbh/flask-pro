@@ -1,114 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuration</title>
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/login.css') }}">
 </head>
 <body>
-    <h1>Menu de Configuration</h1>
-    
-    <div>
-        <h2>Paramètres Généraux</h2>
-        <form action="/configTech" method="POST">
-            <div>
-                <label for="nom_site">Nom du site :</label>
-                <input type="text" id="nom_site" name="nom_site" value="AgriTech">
-            </div>
-            <div>
-                <label for="langue">Langue :</label>
-                <select id="langue" name="langue">
-                    <option value="fr">Français</option>
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                </select>
-            </div>
-            <div>
-                <label for="theme">Thème :</label>
-                <select id="theme" name="theme">
-                    <option value="clair">Clair</option>
-                    <option value="sombre">Sombre</option>
-                    <option value="auto">Automatique</option>
-                </select>
-            </div>
-            <button type="submit">Enregistrer</button>
-        </form>
-    </div>
-
-    <div>
-        <h2>Paramètres de Notification</h2>
-        <form action="/configTech" method="POST">
-            <div>
-                <label>
-                    <input type="checkbox" name="notif_email" checked>
-                    Notifications par email
-                </label>
-            </div>
-            <div>
-                <label>
-                    <input type="checkbox" name="notif_sms" checked>
-                    Notifications par SMS
-                </label>
-            </div>
-            <div>
-                <label>
-                    <input type="checkbox" name="notif_push" checked>
-                    Notifications push
-                </label>
-            </div>
-            <button type="submit">Enregistrer</button>
-        </form>
-    </div>
-
-    <div>
-        <h2>Paramètres de Sécurité</h2>
-        <form action="/configTech" method="POST">
-            <div>
-                <label for="ancien_mdp">Ancien mot de passe :</label>
-                <input type="password" id="ancien_mdp" name="ancien_mdp">
-            </div>
-            <div>
-                <label for="nouveau_mdp">Nouveau mot de passe :</label>
-                <input type="password" id="nouveau_mdp" name="nouveau_mdp">
-            </div>
-            <div>
-                <label for="confirmer_mdp">Confirmer le mot de passe :</label>
-                <input type="password" id="confirmer_mdp" name="confirmer_mdp">
-            </div>
-            <button type="submit">Changer le mot de passe</button>
-        </form>
-    </div>
-
-    <div>
-        <h2>Paramètres de Base de Données</h2>
-        <form action="/configTech" method="POST">
-            <div>
-                <label for="host">Hôte :</label>
-                <input type="text" id="host" name="host" value="localhost">
-            </div>
-            <div>
-                <label for="port">Port :</label>
-                <input type="number" id="port" name="port" value="3306">
-            </div>
-            <div>
-                <label for="database">Base de données :</label>
-                <input type="text" id="database" name="database" value="lambrech">
-            </div>
-            <div>
-                <label for="user">Utilisateur :</label>
-                <input type="text" id="user" name="user" value="root">
-            </div>
-            <button type="submit">Tester la connexion</button>
-        </form>
-    </div>
-
-    <div>
-        <h2>Actions Système</h2>
-        <form action="/configTech" method="POST">
-            <button type="submit" name="action" value="backup">Sauvegarder la base de données</button>
-            <button type="submit" name="action" value="restore">Restaurer la base de données</button>
-            <button type="submit" name="action" value="clear_cache">Vider le cache</button>
-        </form>
-    </div>
-</body>
+    {% include 'navbar.html' %}
+    <h1>Configuration dziopdjqzidpopjqzidopqzjdioqzjdqziod</h1>
 </html>
