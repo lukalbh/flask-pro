@@ -55,7 +55,7 @@ def home():
 def dash():
     if "username" in session :
         print(session["username"])
-        return render_template("dashboard.html")
+        return render_template("dashboard/dashboard.html")
     else:
         print("no session")
         return redirect(url_for("login"))
