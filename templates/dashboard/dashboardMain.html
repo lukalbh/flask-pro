@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Agricole</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboardMain.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1 class="welcome-text">Bonjour, {{ username }}</h1>
+            <div class="date">Lundi, 15 Janvier 2024</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Température</h3>
+                    <p>24°C</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Humidité</h3>
+                    <p>65%</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Croissance</h3>
+                    <p>+12%</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Luminosité</h3>
+                    <p>850 lux</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <h3>Évolution de la température</h3>
+                <div class="chart-placeholder">
+                    Graphique de température
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Niveaux d'humidité</h3>
+                <div class="chart-placeholder">
+                    Graphique d'humidité
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-activities">
+            <h3>Activités récentes</h3>
+            <ul class="activity-list">
+                <li class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h4>Arrosage automatique</h4>
+                        <p>Zone A - 2L d'eau</p>
+                    </div>
+                    <div class="activity-time">Il y a 5 min</div>
+                </li>
+
+                <li class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h4>Alert de température</h4>
+                        <p>Température élevée détectée</p>
+                    </div>
+                    <div class="activity-time">Il y a 1h</div>
+                </li>
+
+                <li class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h4>Croissance des plantes</h4>
+                        <p>Nouvelle feuille détectée</p>
+                    </div>
+                    <div class="activity-time">Il y a 2h</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

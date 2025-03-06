@@ -53,9 +53,8 @@ def home():
 
 @app.route('/dashboard')
 def dash():
-    if "username" in session :
-        print(session["username"])
-        return render_template("dashboard/dashboard.html")
+    if "username" in session:
+        return render_template("dashboard/dashboard.html", username=session["username"]) #username est une variable de la page dashboardMain.html pour mettre le nom 
     else:
         print("no session")
         return redirect(url_for("login"))
