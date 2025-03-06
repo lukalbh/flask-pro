@@ -54,7 +54,7 @@ def home():
 @app.route('/dashboard')
 def dash():
     if "username" in session:
-        return render_template("dashboard/dashboard.html", username=session["username"]) #username est une variable de la page dashboardMain.html pour mettre le nom 
+        return render_template("dashboard/dashboard.html", username=session["username"]) #username est une variable de la page dashboardMain.html pour mettre le nom
     else:
         print("no session")
         return redirect(url_for("login"))
@@ -92,4 +92,5 @@ def configTech():
 if __name__ == '__main__':
     app.run(debug=True)
 
-
+def generate_temperature_for_graph():
+    mycursor.execute("SELECT id_capteur, temperature, date_mesure FROM capteurs WHERE id_capteur = 'CAPTEUR_01' ")
