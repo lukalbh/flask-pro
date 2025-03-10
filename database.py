@@ -35,20 +35,10 @@ class DBconnection(Singleton):
             print("pas connecter")
 
     def fetch_one(self, query, params):
-        """Exécute une requête SQL et récupère la première ligne du résultat."""
-        try:
-            self.connect()
-
-            # Exécuter la requête SQL avec les paramètres donnés
-            cursor = self.connection.cursor()
-            cursor.execute(query, params)
-            result = cursor.fetchone()  # Utiliser fetchone pour récupérer la première ligne
-            cursor.close()  # Fermer le curseur après l'exécution
-
-            return result  # Retourner la première ligne récupérée
-        except Error as e:
-            print(f"Erreur lors de l'exécution de la requête : {e}")
-            return None
-        except Exception as e:
-            print(f"Erreur générale : {e}")
-            return None
+        #éxecuter une requete et récuperer les lignes
+        self.connect()
+        cursor = self.connection.cursor()
+        cursor.execute(query, params)
+        result = cursor.fetchone()  # Utiliser fetchone pour récupérer la première ligne
+        cursor.close()  # Fermer le curseur après l'exécution
+        return result  # Retourner la première ligne récupérée
