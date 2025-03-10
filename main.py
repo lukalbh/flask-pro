@@ -2,14 +2,14 @@ from flask import Flask, request
 from flask import render_template
 from flask import redirect, url_for, session
 import mysql.connector
+from database import DBconnection
 
 # Création de l'application Flask
 app = Flask(__name__)
 app.secret_key= "key"
 
-db = mysql.connector.connect(user = "lambrech",password="lambrech", host = "babylone",database = "lambrech", ssl_disabled=True)
-
-mycursor = db.cursor()
+db = DBconnection()
+db.connect()
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -19,8 +19,7 @@ def login():
         password = request.form["password"]
 
         #permet de faire une requete
-        mycursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
-        user = mycursor.fetchone()
+        user = db.fetch_one("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
         if user:      
             #vérifie la session si le username est = au username
             session["username"] = username
@@ -28,6 +27,7 @@ def login():
         else:
             return render_template("login/login.html", message="identifiant incorrect")
     return render_template("login/login.html")
+
 
 @app.route('/loginTech', methods=["GET", "POST"])
 def loginTech():
@@ -37,8 +37,7 @@ def loginTech():
         password = request.form["password"]
 
         #permet de faire une requete
-        mycursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
-        user = mycursor.fetchone()
+        user = db.fetch_one("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
         if user:      
             session["username"] = username
             session.pop("username", None)
