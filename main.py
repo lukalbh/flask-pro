@@ -7,7 +7,7 @@ import mysql.connector
 app = Flask(__name__)
 app.secret_key= "key"
 
-db = mysql.connector.connect(user = "root",host = "localhost",database = "lambrech", ssl_disabled=True)
+db = mysql.connector.connect(user = "lambrech",password="lambrech", host = "babylone",database = "lambrech", ssl_disabled=True)
 
 mycursor = db.cursor()
 
@@ -18,9 +18,11 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
+        #permet de faire une requete
         mycursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
         user = mycursor.fetchone()
         if user:      
+            #vérifie la session si le username est = au username
             session["username"] = username
             return redirect(url_for("dash"))
         else:
@@ -34,6 +36,7 @@ def loginTech():
         username = request.form["username"]
         password = request.form["password"]
 
+        #permet de faire une requete
         mycursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
         user = mycursor.fetchone()
         if user:      
@@ -91,6 +94,3 @@ def configTech():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-def generate_temperature_for_graph():
-    mycursor.execute("SELECT id_capteur, temperature, date_mesure FROM capteurs WHERE id_capteur = 'CAPTEUR_01' ")
