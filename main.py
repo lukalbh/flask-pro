@@ -6,6 +6,7 @@ from database import DBconnection
 
 # Création de l'application Flask
 app = Flask(__name__)
+
 app.secret_key= "key"
 
 db = DBconnection()
