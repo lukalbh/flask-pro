@@ -1,5 +1,4 @@
 import mysql.connector
-from mysql.connector import Error
 
 
 #Class pour le singleton
@@ -11,12 +10,14 @@ class Singleton(object):
             cls._instance = org.__new__(cls, *args, **kw) 
         return cls._instance
 
+#Class pour la connexion a la bd et requete
 class DBconnection(Singleton):
 
-    def __init__(self, host="localhost",database="lambrech",user="lambrech", ssl_disabled=True):
+    def __init__(self, host="babylone",database="lambrech",user="lambrech",password="lambrech", ssl_disabled=True):
         self.host = host
         self.database = database
         self.user = user
+        self.password = password
         self.ssl_disabled = ssl_disabled
         self.connection = None
 
@@ -25,6 +26,7 @@ class DBconnection(Singleton):
             host=self.host,
             database=self.database,
             user=self.user,
+            password=self.password,
             ssl_disabled=self.ssl_disabled  # Désactiver SSL
         )
         if self.connection.is_connected():
