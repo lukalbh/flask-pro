@@ -38,10 +38,10 @@ def loginTech():
         password = request.form["password"]
 
         #permet de faire une requete
-        user = db.fetch_one("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+        user = db.fetch_one("SELECT * FROM techniciens WHERE username = %s AND password = %s", (username, password))
+        db.close()
         if user:      
             session["username"] = username
-            session.pop("username", None)
             return redirect(url_for("configTech"))
         else:
             return render_template("login/loginTech.html", message="identifiant incorrect")
@@ -87,10 +87,10 @@ def localisation():
 @app.route('/configTech', methods=["GET", "POST"])
 def configTech():
     if "username" in session:
-        print(session["username"])
-        return render_template("login/config.html")
+        print("coucou")
+        return render_template("login/config.html", username=session["username"])
     else:
-        return redirect(url_for("login"))
+        return redirect(url_for("loginTech"))
 
 if __name__ == '__main__':
     app.run(debug=True)

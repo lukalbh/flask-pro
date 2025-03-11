@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LoginTech</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='./css/login.css') }}">
 </head>
@@ -12,7 +12,7 @@
         <h1 class="log">DataCup Identifiant</h1>
     </div>
     <div class="divform">
-        <form method="POST" class="form" action="{{ url_for('configTech') }}">
+        <form method="POST" class="form" action="{{ url_for('loginTech') }}">
            <label for="username" class="userlab">Nom d'utilisateur :</label>
            <input placeholder="root" type="text" id="username" name="username" class="inpu"><br>
 

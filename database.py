@@ -42,3 +42,7 @@ class DBconnection(Singleton):
         result = cursor.fetchone()  # Utiliser fetchone pour récupérer la première ligne
         cursor.close()  # Fermer le curseur après l'exécution
         return result  # Retourner la première ligne récupérée
+    
+    def close(self):
+        self.connection.close()
+        print("Connexion fermée")
