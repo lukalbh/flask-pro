@@ -9,10 +9,17 @@
 <body>
     <div class="dashboard-container">
         <div class="header">
-            <h1 class="welcome-text">Bonjour, {{ username }}</h1>
-            <div class="date">Lundi, 15 Janvier 2024</div>
+            <h1 class="welcome-text">Bonjour,Mr/me {{ username }}</h1>
+            <div class="date">DataCup@Property</div>
         </div>
-
+        <div class="divSelect">
+            <label class="fermeSelect">Selectionnez votre Ferme : </label>
+            <select name="ferme" class="selectFerme">
+                <option>ferme 1</option>
+                <option>ferme 2</option>
+                <option>ferme 3</option>
+            </select>
+        </div>
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-info">
@@ -30,8 +37,8 @@
 
             <div class="stat-card">
                 <div class="stat-info">
-                    <h3>Croissance</h3>
-                    <p>+12%</p>
+                    <h3>pH</h3>
+                    <p>5</p>
                 </div>
             </div>
         </div>
@@ -43,7 +50,7 @@
                     Graphique de température
                 </div>
             </div>
-
+            
             <div class="chart-card">
                 <h3>Niveaux d'humidité</h3>
                 <div class="chart-placeholder">

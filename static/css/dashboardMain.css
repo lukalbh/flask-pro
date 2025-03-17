@@ -22,6 +22,20 @@ body {
     margin-bottom: 30px;
 }
 
+.divSelect {
+    margin-bottom: 15px;
+
+}
+
+.fermeSelect {
+    font-size: 24px;
+}
+
+.selectFerme {
+    width:100px;
+    height: 30px;
+}
+
 .welcome-text {
     font-size: 24px;
     color: #2c3e50;
