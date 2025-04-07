@@ -1,0 +1,72 @@
+/* Style de base du body */
+body {
+    font-family: Arial, sans-serif; /* Définit la police de caractères par défaut */
+    background-color: #f4f4f9; /* Couleur de fond claire */
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime les espacements par défaut */
+}
+
+/* Conteneur principal avec une largeur de 80% et centré */
+.container {
+    width: 80%; /* Fixe la largeur à 80% de la largeur de la fenêtre */
+    margin: 20px auto; /* Centrage du conteneur avec une marge de 20px en haut et en bas */
+}
+
+/* Conteneur pour le titre principal */
+.title-container {
+    background-color: rgb(226, 114, 40); /* Fond orange pour le titre */
+    color: black; /* Texte en noir */
+    padding: 20px; /* Espacement intérieur de 20px */
+    border-radius: 10px; /* Coins arrondis */
+    text-align: center; /* Aligne le texte au centre */
+}
+
+/* Conteneur des options sous le titre */
+.options-container {
+    margin-top: 20px; /* Marge en haut pour espacer des éléments précédents */
+    text-align: center; /* Centre le contenu horizontalement */
+}
+
+/* Conteneur des cartes, qui sont disposées en ligne avec des espaces entre elles */
+.card-container {
+    display: flex; /* Utilisation de Flexbox pour disposer les éléments en ligne */
+    justify-content: space-between; /* Espacement égal entre les cartes */
+    gap: 20px; /* Espacement entre les cartes */
+}
+
+/* Style des cartes */
+.card {
+    background-color: white; /* Fond blanc pour chaque carte */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 20px; /* Espacement intérieur de 20px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère autour des cartes */
+    flex: 1; /* Chaque carte prend la même largeur et s'adapte à l'espace disponible */
+}
+
+/* Style du titre de chaque carte */
+.card h2 {
+    text-align: center; /* Centre le texte horizontalement */
+    color: #333; /* Couleur du texte, gris foncé */
+}
+
+/* Conteneur de chaque graphique dans les cartes */
+.card .graph-container {
+    width: 100%; /* Prend toute la largeur de la carte */
+    height: 400px; /* Hauteur fixe pour le graphique */
+    background-color: #f1f1f1; /* Fond gris clair */
+    border-radius: 5px; /* Coins arrondis pour le graphique */
+    margin-top: 20px; /* Marge au-dessus du graphique */
+}
+
+/* Conteneur des cases à cocher */
+.checkbox-container {
+    display: inline-block; /* Disposition en ligne pour les cases à cocher */
+    margin-right: 15px; /* Marge à droite pour espacer les cases */
+    font-size: 20px; /* Taille de la police pour l'étiquette des cases */
+}
+
+/* Style des cases à cocher */
+input[type="checkbox"] {
+    transform: scale(1.5); /* Agrandit la taille des cases à cocher */
+    margin-right: 10px; /* Espacement à droite des cases à cocher */
+}
