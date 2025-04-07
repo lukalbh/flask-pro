@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/graphique.css') }}">
+    {{ ressources | safe }}
     <title>graphique</title>
 </head>
 <body>
     {% include 'navbar.html' %}
-    
+    <div class="container">
+        <div class="title-container">
+            <h1>Affichage des Graphiques</h1>
+            <p>Page avec des cartes pour afficher vos graphiques</p>
+        </div>
+
+        <!-- Section des options de type de graphique -->
+        <div class="options-container">
+            <p><strong>Choisir un type de graphique :</strong></p>
+            <div class="checkbox-container">
+                <input type="checkbox" id="barChart" name="chartType" value="bar">
+                <label for="barChart">Graphique en barres</label>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="lineChart" name="chartType" value="line">
+                <label for="lineChart">Graphique linéaire</label>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="pieChart" name="chartType" value="pie">
+                <label for="pieChart">Graphique circulaire</label>
+            </div>
+        </div>
+
+        <!-- Container to hold the cards side by side -->
+        <div class="card-container">
+            <div class="card">
+                <h2>Graphique 1</h2>
+                <div class="graph-container" id="graph1">
+                    <!-- Ajoutez ici votre premier graphique -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Graphique 2</h2>
+                <div class="graph-container" id="graph2">
+                    <!-- Ajoutez ici votre second graphique -->
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ ressources | safe }}
     <title>Dashboard Agricole</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboardMain.css') }}">
 </head>
@@ -23,21 +24,20 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-info">
-                    <h3>Température</h3>
-                    <p>24°C</p>
+                    <h3>Température Moyenne</h3>
+                    <p>{{ tempMoyenne }}°C</p>
                 </div>
             </div>
-
             <div class="stat-card">
                 <div class="stat-info">
-                    <h3>Humidité</h3>
+                    <h3>Humidité Moyenne</h3>
                     <p>65%</p>
                 </div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-info">
-                    <h3>pH</h3>
+                    <h3>pH Moyen</h3>
                     <p>5</p>
                 </div>
             </div>
@@ -46,17 +46,19 @@
         <div class="charts-container">
             <div class="chart-card">
                 <h3>Évolution de la température</h3>
-                <div class="chart-placeholder">
-                    Graphique de température
+                <div>
+                    {{ div | safe }}
                 </div>
             </div>
-            
+            {{ script | safe }}
             <div class="chart-card">
                 <h3>Niveaux d'humidité</h3>
                 <div class="chart-placeholder">
-                    Graphique d'humidité
+                    {{ div2 | safe }}
+                    
                 </div>
             </div>
+            {{ script2 | safe }}
         </div>
 
         <div class="recent-activities">
@@ -90,3 +92,4 @@
     </div>
 </body>
 </html>
+
