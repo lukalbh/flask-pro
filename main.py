@@ -166,8 +166,3 @@ def configTech():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-    """"
-    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
-    """

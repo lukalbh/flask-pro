@@ -27,9 +27,6 @@ def evolutionTemp():
     return {"script" : script, "div": div}
 
 def evolutionTemp2():
-    db = DBconnection()
-    db.connect()
-    
     plot = figure(width=500, height=300)
     plot.line([1,2,3],[4,5,6], line_width=2)
     script, div = components(plot)
