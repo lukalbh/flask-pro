@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="icon" type="image/png" href="/static/img/iconDataCup.jpeg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/config.css') }}">
+</head>
+
+    <body>
+        {% include 'dashboard/navbar.html' %}
+        <h1>Configuration dziopdjqzidpopjqzidopqzjdioqzjdqziod</h1>
+
+        <button onclick="validateAndSave()">Valider et Sauvegarder</button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" id="col-map" style="text-align: center;">
+                    <iframe src="{{ url_for('static', filename='config/config.json') }}" style="height: 300px; width: 40%;"></iframe>
+                    <div class="separator" id="separator"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function validateAndSave() {
+                let formData = new FormData(document.getElementById('configForm'));
+
+                fetch('/save_config', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Configuration sauvegardée avec succès');
+                    } else {
+                        alert('Erreur lors de la sauvegarde');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        </script>
+    </body>
+</html>
+

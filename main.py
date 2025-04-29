@@ -5,10 +5,13 @@ from flask import redirect, url_for, session
 from database import DBconnection # Importation de la classe DBconnection pour gérer la connexion à la base de données
 from bokeh.resources import CDN # Importation de CDN pour charger les ressources de Bokeh
 from plot import * # Importation des fonctions liées aux graphiques (evolutionTemp, plotex, etc.)
+from plotGraphique import *
+import json
 
 # Création de l'application Flask
 app = Flask(__name__)
 app.secret_key = 'luka' 
+CONFIG_FILE = 'config.json'
 
 """
 Décorateur créée pour debugger en cas d'érreur
@@ -19,6 +22,16 @@ def trace(func):
         print(f"Appel de la fonction : {func.__name__}") # affiche le nom de la fonction
         return func(*args, **kwargs)
     return wrapper
+
+def load_config():
+    with open(CONFIG_FILE, 'r') as f:
+        return json.load(f)
+
+def save_config(config_data):
+    with open(CONFIG_FILE, 'w') as f:
+        json.dump(config_data, f, indent=4)
+
+
 
 # Objet instancié
 db = DBconnection()
@@ -132,11 +145,12 @@ Route pour afficher les graphiques des capteurs
 @trace
 def graph():
     if "username" in session :
-        bokeh_components = plotex()
-        script = bokeh_components["script"]
-        div = bokeh_components["div"]
-        print(session["username"])
-        return render_template("graphique.html",ressources=CDN.render(), script=script, div=div)
+        bar_script, bar_div = create_bar_chart()
+        line_script, line_div = create_line_chart()
+        pie_script, pie_div = create_pie_chart()
+        return render_template("graphique.html", ressources=CDN.render(), bar_script=bar_script, bar_div=bar_div,
+                           line_script=line_script, line_div=line_div,
+                           pie_script=pie_script, pie_div=pie_div)
     else:
         return redirect(url_for("login"))
 
@@ -160,7 +174,7 @@ Route qui renvoie vers la page de configuration pour le technicien
 def configTech():
     if "username" in session:
         print(session["username"])
-        return render_template("login/config.html", username=session["username"])
+        return render_template("config.html", username=session["username"])
     else:
         return redirect(url_for("loginTech"))
 

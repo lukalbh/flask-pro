@@ -1,0 +1,19 @@
+{
+    "sensors": [
+      {
+        "id": "sensor_1",
+        "type": "temperature",
+        "unit": "C",
+        "location": "salon",
+        "pin": 4
+      },
+      {
+        "id": "sensor_2",
+        "type": "humidity",
+        "unit": "%",
+        "location": "chambre",
+        "pin": 5
+      }
+    ]
+  }
+  

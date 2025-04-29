@@ -1,5 +1,6 @@
 from bokeh.plotting import figure
 from database import DBconnection
+import numpy as np
 
 from bokeh.embed import components
 

@@ -76,6 +76,10 @@
     background-color: #fee2e2;                /* Fond plus clair au survol pour le lien de déconnexion */
 }
 
+.nav-link:hover {
+    background-color: #fee2e2;
+}
+
 
 .nav-icon {
     width: 50px;                              /* Taille des icônes dans la navbar */

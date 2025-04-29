@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/img/iconDataCup.jpeg">
     <link rel="stylesheet" href="{{ url_for('static', filename='./css/graphique.css') }}">
     {{ ressources | safe }}
     <title>Graphiques</title>
@@ -10,10 +11,7 @@
 <body>
     {% include 'dashboard/navbar.html' %}
     <div class="container">
-        <div class="title-container">
-            <h1>Affichage des Graphiques</h1>
-            <p>Page avec des cartes pour afficher vos graphiques</p>
-        </div>
+        <h1>Graphiques dynamiques avec Bokeh</h1>
 
         <!-- Section des options de type de graphique -->
         <div class="options-container">
@@ -23,36 +21,53 @@
                 <label for="barChart">Graphique en barres</label>
             </div>
             <div class="checkbox-container">
-                <input type="checkbox" id="lineChart" name="chartType" value="line" ">
+                <input type="checkbox" id="lineChart" name="chartType" value="line" onchange="handleChangeBox()">
                 <label for="lineChart">Graphique linéaire</label>
             </div>
             <div class="checkbox-container">
-                <input type="checkbox" id="pieChart" name="chartType" value="pie" ">
+                <input type="checkbox" id="pieChart" name="chartType" value="pie" onchange="handleChangeBox()">
                 <label for="pieChart">Graphique circulaire</label>
             </div>
         </div>
 
-        <!-- Container to hold the cards side by side -->
+        <!-- Container pour afficher les graphiques -->
         <div class="card-container">
             <div class="card">
-                <h2>Graphique 1</h2>
-                <div class="graph-container" id="graph1">
-                    <!-- Les graphiques s'afficheront ici -->
-                    <div id="graphBar">
-                        
-                    </div>
+                <h2>Graphique en Barres</h2>
+                <div class="graph-container" id="graphBar">
+                    {{ bar_div|safe }}
+                    {{ bar_script|safe }}
                 </div>
             </div>
-            {{script | safe }}
             <div class="card">
-                <h2>Graphique 2</h2>
-                <div class="graph-container" id="graph2">
-                    <!-- Les graphiques s'afficheront ici -->
+                <h2>Graphique Linéaire</h2>
+                <div class="graph-container" id="graphLine">
+                    {{ line_div|safe }}
+                    {{ line_script|safe }}
+                </div>
+            </div>
+            <div class="card">
+                <h2>Graphique Circulaire</h2>
+                <div class="graph-container" id="graphPie">
+                    {{ pie_div|safe }}
+                    {{ pie_script|safe }}
                 </div>
             </div>
         </div>
     </div>
-    <!-- Inclure votre fichier JavaScript ici -->
-    <script src="{{ url_for('static', filename='./js/script.js') }}"></script>
+
+    <script>
+        // Ajouter des événements de gestion pour les cases à cocher
+        function handleChangeBox() {
+            const barChart = document.getElementById('barChart').checked;
+            const lineChart = document.getElementById('lineChart').checked;
+            const pieChart = document.getElementById('pieChart').checked;
+
+            // Cacher ou afficher les graphiques en fonction des cases à cocher
+            document.getElementById('graphBar').style.display = barChart ? 'block' : 'none';
+            document.getElementById('graphLine').style.display = lineChart ? 'block' : 'none';
+            document.getElementById('graphPie').style.display = pieChart ? 'block' : 'none';
+        }
+    </script>
 </body>
 </html>

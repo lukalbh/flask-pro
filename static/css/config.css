@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#col-map {
+    flex: 3; /* Augmente la largeur de l'iframe */
+    padding: 10px;
+    display: flex;
+}
