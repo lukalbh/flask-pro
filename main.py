@@ -10,28 +10,7 @@ import json
 
 # Création de l'application Flask
 app = Flask(__name__)
-app.secret_key = 'luka' 
-CONFIG_FILE = 'config.json'
-
-"""
-Décorateur créée pour debugger en cas d'érreur
-"""
-def trace(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        print(f"Appel de la fonction : {func.__name__}") # affiche le nom de la fonction
-        return func(*args, **kwargs)
-    return wrapper
-
-def load_config():
-    with open(CONFIG_FILE, 'r') as f:
-        return json.load(f)
-
-def save_config(config_data):
-    with open(CONFIG_FILE, 'w') as f:
-        json.dump(config_data, f, indent=4)
-
-
+app.secret_key = 'luka'
 
 # Objet instancié
 db = DBconnection()
@@ -43,7 +22,6 @@ db.connect()
 Route /login qui renvoie vers un formulaire de connexion
 """
 @app.route('/login', methods=["GET", "POST"])
-@trace
 def login():
     if request.method == "POST":
         # Enregistre les données du formulaire
@@ -66,7 +44,6 @@ def login():
 Route pour permettre au Technicien de se connecter pour configurer l'IHM
 """
 @app.route('/loginTech', methods=["GET", "POST"])
-@trace
 def loginTech():
     if request.method == "POST":
         # Enregistre les données du formulaire
@@ -90,7 +67,6 @@ def loginTech():
 
 #rediriger vers /login/
 @app.route('/')
-@trace
 def home():
     return redirect(url_for('login'))
 
@@ -98,7 +74,6 @@ def home():
 Route vers le Dashboard
 """
 @app.route('/dashboard')
-@trace
 def dash():
     if "username" in session: # vérification si l'utilisateur est connecté
         # Requête pour récuperer la moyenne des températures
@@ -133,7 +108,6 @@ def dash():
 Route pour le chemin de déconnexion
 """
 @app.route('/logout')
-@trace
 def logout():
     session.pop("username", None)  # Supprime l'utilisateur de la session
     return redirect(url_for("login")) # Retourne vers login
@@ -142,7 +116,6 @@ def logout():
 Route pour afficher les graphiques des capteurs
 """
 @app.route('/graphique')
-@trace
 def graph():
     if "username" in session :
         bar_script, bar_div = create_bar_chart()
@@ -154,15 +127,26 @@ def graph():
     else:
         return redirect(url_for("login"))
 
+def get_lonlat():
+    with open('./static/config/config.json', 'r') as file:
+            config = json.load(file)
+
+            first_sensor = config['shield'][0]  # Accède au premier capteur
+            longitude = first_sensor['longitude']
+            latitude = first_sensor['latitude']
+
+            return longitude, latitude
+
+
+
 """
 Route pour la localisation des capteurs
 """
 @app.route('/localisation')
-@trace
 def localisation():
     if "username" in session :
-        print(session["username"])
-        return render_template("localisation.html")
+        longitude, latitude = get_lonlat()
+        return render_template("localisation.html", longitude=longitude, latitude=latitude)
     else:
         return redirect(url_for("login"))
 
@@ -170,7 +154,6 @@ def localisation():
 Route qui renvoie vers la page de configuration pour le technicien
 """
 @app.route('/configTech', methods=["GET", "POST"])
-@trace
 def configTech():
     if "username" in session:
         print(session["username"])

@@ -1,17 +1,19 @@
 {
-    "sensors": [
+    "shield": [
       {
         "id": "sensor_1",
         "type": "temperature",
         "unit": "C",
-        "location": "salon",
+        "longitude": -1354861235684,
+        "latitude": 12354168,
         "pin": 4
       },
       {
         "id": "sensor_2",
         "type": "humidity",
         "unit": "%",
-        "location": "chambre",
+        "longitude": -15641,
+        "latitude": 454561234,
         "pin": 5
       }
     ]

@@ -2,3 +2,15 @@
     text-align: center;
     margin-top: 40px; /* Ajustez la valeur selon l'espacement désiré */
 }
+
+.containers {
+    max-width: 1200px; /* Largeur maximale du tableau de bord */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
+    background: white; /* Fond blanc pour chaque carte */
+    padding: 20px; /* Espacement intérieur */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre légère autour des cartes */
+    display: flex; /* Flexbox pour aligner les éléments à l'intérieur de la carte */
+    flex-direction: column; /* Aligne les éléments verticalement */
+    gap: 15px; /* Espacement entre les éléments */
+}
