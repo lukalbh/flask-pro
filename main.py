@@ -161,7 +161,6 @@ def get_sensor_data(sensor_id):
                 return jsonify(shield)  # Retourne les données du capteur
     return jsonify({'error': 'Capteur non trouvé'}), 404  # Si le capteur n'est pas trouvé
 
-
 """
 Route qui renvoie vers la page de configuration pour le technicien
 """
