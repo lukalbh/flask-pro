@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/localisation.css') }}">
-    <script src="{{ url_for('static', filename='js/localisation.js') }}"></script>
-    <link rel="icon" type="image/png" href="/static/img/iconDataCup.jpeg">
-    <title>Localisation</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/localisation.css') }}">
+        <script src="{{ url_for('static', filename='js/localisation.js') }}"></script>
+    
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    
+        <link rel="icon" type="image/png" href="/static/img/iconDataCup.jpeg">
+        <title>Localisation</title>
+    </head>
 </head>
 <body>
     {% include 'dashboard/navbar.html' %}
 
-    <h1 class="title-loc">Localisation des SHIELD </h1>
+    <div class="container">
+        <h1 class="title-loc">Localisation des SHIELD </h1>
 
-    <div class="select">
-        <label>Choisir un SHIELD :</label>
-        <select id="shieldSelect" onchange="loadSensors()">
-            <option value="shield">SHIELD 1</option>
-            <option value="shield2">SHIELD 2</option>
-        </select>
+        <div class="select">
+            <label>Choisir un SHIELD :</label>
+            <select id="shieldSelect" onchange="loadSensors()">
+                <option value="shield">SHIELD 1</option>
+                <option value="shield2">SHIELD 2</option>
+            </select>
+        </div>
+        
+        <div class="select">
+            <label>Choisir un capteur :</label>
+            <select id="sensorSelect" onchange="loadSensorData()">
+                <!-- Dynamically filled based on shield -->
+            </select>
+        </div>
+        
+        <div class="containers" id="sensorInfo">
+            <div>Longitude : <span id="longitude"></span></div>
+            <div>Latitude : <span id="latitude"></span></div>
+            <div>Type : <span id="type"></span></div>
+            <div>Unité : <span id="unit"></span></div>
+            <div>Pin : <span id="pin"></span></div>
+        </div>
+    </div>
+
+
+    <div class="map-containers">
+        <div id="map"></div>
     </div>
     
-    <div class="select">
-        <label>Choisir un capteur :</label>
-        <select id="sensorSelect" onchange="loadSensorData()">
-            <!-- Dynamically filled based on shield -->
-        </select>
-    </div>
-    
-    <div class="containers" id="sensorInfo">
-        <div>Longitude : <span id="longitude"></span></div>
-        <div>Latitude : <span id="latitude"></span></div>
-        <div>Type : <span id="type"></span></div>
-        <div>Unité : <span id="unit"></span></div>
-        <div>Pin : <span id="pin"></span></div>
-    </div>
 </body>
 </html>
