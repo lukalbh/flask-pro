@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import os
+=======
+import functools
+>>>>>>> 8d4992b04bca0766ff43aada8645b7c63a77064c
 from flask import Flask, request, jsonify
 from flask import render_template
 from flask import redirect, url_for, session
@@ -154,12 +158,21 @@ def get_sensors(group):
     config = load_config()
     return jsonify(config.get(group, []))  # Retourne les capteurs du SHIELD sélectionné
 
+<<<<<<< HEAD
 @app.route('/get_sensor_data/<shield_id>')
 def get_sensor_data(shield_id):
     config = load_config()
     for group in config.values():
         for shield in group:
             if shield['id'] == shield_id:
+=======
+@app.route('/get_sensor_data/<sensor_id>')
+def get_sensor_data(sensor_id):
+    config = load_config()
+    for group in config.values():
+        for shield in group:
+            if shield['id'] == sensor_id:
+>>>>>>> 8d4992b04bca0766ff43aada8645b7c63a77064c
                 return jsonify(shield)  # Retourne les données du capteur
     return jsonify({'error': 'Capteur non trouvé'}), 404  # Si le capteur n'est pas trouvé
 

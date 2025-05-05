@@ -1,7 +1,11 @@
 let map = null;
 let marker = null;
 
+<<<<<<< HEAD
 // Fonction pour charger les shiled selon la ferme sélectionné
+=======
+// Fonction pour charger les capteurs selon le SHIELD sélectionné
+>>>>>>> 8d4992b04bca0766ff43aada8645b7c63a77064c
 async function loadSensors() {
     const shieldGroup = document.getElementById('shieldSelect').value;
     
@@ -31,9 +35,15 @@ async function loadSensorData() {
 
     document.getElementById('longitude').textContent = data.longitude;
     document.getElementById('latitude').textContent = data.latitude;
+<<<<<<< HEAD
     //document.getElementById('type').textContent = data.type;
     //document.getElementById('unit').textContent = data.unit;
     //document.getElementById('pin').textContent = data.pin;
+=======
+    document.getElementById('type').textContent = data.type;
+    document.getElementById('unit').textContent = data.unit;
+    document.getElementById('pin').textContent = data.pin;
+>>>>>>> 8d4992b04bca0766ff43aada8645b7c63a77064c
 
     const lat = data.latitude;
     const lon = data.longitude;
@@ -45,14 +55,26 @@ async function loadSensorData() {
             attribution: '© OpenStreetMap'
         }).addTo(map);
         marker = L.marker([lat, lon]).addTo(map)
+<<<<<<< HEAD
             .bindPopup(`Capteur : ${sensorId}<br>`).openPopup();
     } else {
         map.setView([lat, lon], 13);
         marker.setLatLng([lat, lon])
             .setPopupContent(`Capteur : ${sensorId}<br>`)
+=======
+            .bindPopup(`Capteur : ${sensorId}<br>Type : ${data.type}<br>Unité : ${data.unit}`).openPopup();
+    } else {
+        map.setView([lat, lon], 13);
+        marker.setLatLng([lat, lon])
+            .setPopupContent(`Capteur : ${sensorId}<br>Type : ${data.type}<br>Unité : ${data.unit}`)
+>>>>>>> 8d4992b04bca0766ff43aada8645b7c63a77064c
             .openPopup();
     }
 }
 
 // Appeler automatiquement au chargement
+<<<<<<< HEAD
 window.onload = loadSensors;
+=======
+window.onload = loadSensors;
+>>>>>>> 8d4992b04bca0766ff43aada8645b7c63a77064c
