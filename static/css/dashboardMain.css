@@ -26,20 +26,6 @@ body {
     margin-bottom: 30px; /* Marge en bas de l'en-tête */
 }
 
-/* Style des sélecteurs (dropdown) */
-.divSelect {
-    margin-bottom: 15px; /* Espace sous les éléments de sélection */
-}
-
-.fermeSelect {
-    font-size: 24px; /* Taille de la police des labels des sélecteurs */
-}
-
-.selectFerme {
-    width: 100px; /* Largeur du sélecteur */
-    height: 30px; /* Hauteur du sélecteur */
-}
-
 /* Style du texte de bienvenue */
 .welcome-text {
     font-size: 24px; /* Taille de la police */

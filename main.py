@@ -1,5 +1,5 @@
-import functools
-from flask import Flask, request
+import os
+from flask import Flask, request, jsonify
 from flask import render_template
 from flask import redirect, url_for, session
 from database import DBconnection # Importation de la classe DBconnection pour gérer la connexion à la base de données
@@ -16,6 +16,8 @@ app.secret_key = 'luka'
 db = DBconnection()
 # Connexion a la DB
 db.connect()
+
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'static/config', 'config.json')
 
 
 """
@@ -79,7 +81,10 @@ def dash():
         # Requête pour récuperer la moyenne des températures
         moyTemp = db.fetch_one("SELECT AVG(temperature) AS moyenne_temperature FROM temp_data", ()) 
         tempMoyenne = moyTemp[0] # récuperation de la valeur tuple et stocker dans une variable
-        tempMoyenne = round(tempMoyenne, 2) # arrondis de la valeur a 2 decimales
+        if tempMoyenne is not None:
+            tempMoyenne = round(tempMoyenne, 2)
+        else:
+            tempMoyenne = "Aucune donnée"
         
         #génération des graphiques Bokeh
         bokeh_components = evolutionTemp()
@@ -127,17 +132,11 @@ def graph():
     else:
         return redirect(url_for("login"))
 
-def get_lonlat():
-    with open('./static/config/config.json', 'r') as file:
-            config = json.load(file)
 
-            first_sensor = config['shield'][0]  # Accède au premier capteur
-            longitude = first_sensor['longitude']
-            latitude = first_sensor['latitude']
-
-            return longitude, latitude
-
-
+def load_config():
+    with open('./static/config/config.json', 'r') as f:
+        return json.load(f)
+    
 
 """
 Route pour la localisation des capteurs
@@ -145,10 +144,24 @@ Route pour la localisation des capteurs
 @app.route('/localisation')
 def localisation():
     if "username" in session :
-        longitude, latitude = get_lonlat()
-        return render_template("localisation.html", longitude=longitude, latitude=latitude)
+        
+        return render_template("localisation.html")
     else:
         return redirect(url_for("login"))
+    
+@app.route('/get_sensors/<group>')
+def get_sensors(group):
+    config = load_config()
+    return jsonify(config.get(group, []))  # Retourne les capteurs du SHIELD sélectionné
+
+@app.route('/get_sensor_data/<shield_id>')
+def get_sensor_data(shield_id):
+    config = load_config()
+    for group in config.values():
+        for shield in group:
+            if shield['id'] == shield_id:
+                return jsonify(shield)  # Retourne les données du capteur
+    return jsonify({'error': 'Capteur non trouvé'}), 404  # Si le capteur n'est pas trouvé
 
 """
 Route qui renvoie vers la page de configuration pour le technicien
@@ -160,6 +173,23 @@ def configTech():
         return render_template("config.html", username=session["username"])
     else:
         return redirect(url_for("loginTech"))
+
+@app.route('/get-config')
+def get_config():
+    if not os.path.exists(CONFIG_PATH):
+        return jsonify({"error": "Le fichier config.json est introuvable."}), 404
+
+    with open(CONFIG_PATH, 'r') as f:
+        data = json.load(f)
+    return jsonify(data)
+
+@app.route('/save-config', methods=['POST'])
+def save_config():
+    data = request.get_json()
+    os.makedirs('config', exist_ok=True)
+    with open(CONFIG_PATH, 'w') as f:
+        json.dump(data, f, indent=2)
+    return jsonify({"status": "ok"})
 
 if __name__ == '__main__':
     app.run(debug=True)
